@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.3 도수분포표 | 25가지 음식 가격 분류 미션</title>
+<style>
+:root{--bg:#f5f8ff;--navy:#152b4d;--muted:#65748b;--line:#dce5f1;--blue:#315fe8;--light:#edf2ff;--good:#13866c;--bad:#d64d58;--card:#fff;--gold:#fff5d7}
+*{box-sizing:border-box}body{margin:0;font-family: "Pretendard","Noto Sans KR","Malgun Gothic",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--bg);color:var(--navy)}button{font:inherit;cursor:pointer}button:focus-visible,[tabindex]:focus-visible{outline:3px solid #80a1ff;outline-offset:2px}
+header{background:linear-gradient(120deg,#17356b,#345bc0);color:white;padding:22px 30px 20px;box-shadow:0 3px 12px #1c3c7918}.topline{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.08em;background:#ffffff28;border-radius:6px;padding:5px 10px}.title{font-size:clamp(21px,2.2vw,34px);font-weight:900;letter-spacing:-.04em;line-height:1.2}header p{margin:9px 0 0;opacity:.87;font-size:15px}
+main{max-width:1570px;margin:auto;padding:22px 25px 28px}.toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.group{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.toolbar strong{font-size:15px;margin-right:5px}.pill{border-radius:10px;background:#fff;border:1.5px solid var(--line);font-weight:800;padding:10px 16px;color:var(--navy)}.pill:hover{background:#f5f7fd}.pill.active{background:var(--blue);color:white;border-color:var(--blue)}.pill.main{background:#122d5c;color:white;border-color:#122d5c}.pill.alert{color:#a53f4b}.grid{display:grid;grid-template-columns:minmax(560px,1.3fr) minmax(375px,.95fr);gap:20px}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:21px;box-shadow:0 5px 18px #2946790d;min-width:0}.panelhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}.panel h2{font-size:22px;letter-spacing:-.025em;margin:0 0 4px}.subtitle{font-size:13px;color:var(--muted);margin:0;line-height:1.5}.metric{background:var(--light);color:var(--blue);border-radius:40px;font-weight:900;font-size:14px;padding:8px 12px;white-space:nowrap}.note{display:flex;gap:8px;align-items:center;background:#fff8e8;color:#8b641f;border:1px solid #f6e1a9;border-radius:10px;font-size:13px;line-height:1.6;padding:9px 11px;margin-bottom:15px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.food{background:#f8faff;border:2px solid #dce5f6;border-radius:12px;min-height:72px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#1b3356;transition:transform .12s,border-color .12s,background .12s;text-align:center}.food:hover{transform:translateY(-2px);border-color:#a2b9f5}.food.selected{background:#e3ebff;border-color:var(--blue);box-shadow:0 0 0 2px #315fe825}.food .f-name{font-size:15px;font-weight:800;letter-spacing:-.035em}.food .f-price{font-size:17px;font-weight:900;color:#345bc0;font-variant-numeric:tabular-nums}.food.done{visibility:hidden;pointer-events:none}.widthtools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#f8faff}.widthtools strong{font-size:14px;margin-right:3px}.widthtools .pill{padding:8px 12px}.widthtools .pill:focus-visible{outline-offset:2px}.autohint{font-size:13px;color:var(--muted);line-height:1.45}.bins{display:grid;grid-template-columns:1fr;gap:10px}.bin{min-height:82px;text-align:left;border:2px dashed #bdcbe3;border-radius:13px;background:#fcfdff;padding:12px 15px;color:var(--navy);position:relative;transition:background .12s,border-color .12s}.bin:hover{background:#f3f7ff;border-color:var(--blue)}.bin.highlight{border-color:#315fe8;background:#ebf1ff}.bin.goodflash{animation:flash .35s}@keyframes flash{0%{background:#c5f9e7}100%{background:#fcfdff}}.bin-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.range{font-size:clamp(14px,1.25vw,18px);font-weight:900}.counter{display:flex;align-items:center;justify-content:center;background:#e9effb;color:#3151a2;border-radius:100px;min-width:39px;height:39px;font-size:21px;font-weight:900}.bin-content{margin-top:7px;display:flex;flex-wrap:wrap;gap:5px}.chip{display:inline-block;background:#e8f6f0;color:#13785c;font-size:12px;font-weight:750;padding:3px 7px;border-radius:6px;white-space:nowrap}.bin-empty{font-size:13px;color:#9eacc0}.footer-area{margin-top:17px;display:flex;flex-direction:column;gap:11px}.status{border-radius:10px;padding:12px 14px;background:#eaf1ff;border:1px solid #d2e0fb;font-size:15px;font-weight:750;line-height:1.5;min-height:49px}.status.good{background:#e5f7ef;border-color:#a8e1c8;color:#08724f}.status.bad{background:#ffeff0;border-color:#f4c2c7;color:#ad2935}.progress{height:10px;border-radius:15px;background:#e2e9f5;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,#4e79f7,#72beff);width:0;transition:width .2s}.tools{display:flex;flex-wrap:wrap;gap:9px}.toolbtn{flex:1;min-width:155px;background:white;border:1.5px solid #b8c8e1;border-radius:10px;padding:11px;font-size:14px;font-weight:900;color:#173c85}.toolbtn.dark{background:#183f92;color:white;border-color:#183f92}.toolbtn:disabled{opacity:.4;cursor:default}.tablewrap{overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;margin-top:13px}.tablewrap table{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}th,td{padding:11px 14px;border-bottom:1px solid #e5ebf4;text-align:center}th{background:#eef3ff;color:#243f77}td:first-child{text-align:left}tbody tr:last-child{background:#e7edff;font-weight:900}tbody tr:last-child td{border-bottom:0}.explain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.concept{padding:16px 18px;border-radius:14px;background:#fff;border:1px solid var(--line)}.concept h3{margin:0 0 5px;font-size:16px;color:#254ab4}.concept p{margin:0;color:#53647e;line-height:1.6;font-size:14px}.screenOnly{display:none}.challenge{font-size:13px;line-height:1.6;color:#36517c;background:#eff4ff;border-radius:11px;padding:12px 14px;margin-top:12px}.hidden{display:none!important}
+@media(max-width:1050px){.grid{grid-template-columns:1fr}.cards{grid-template-columns:repeat(5,minmax(0,1fr))}.bins{grid-template-columns:repeat(2,minmax(0,1fr))}.explain{grid-template-columns:1fr 1fr}.range{font-size:16px}}@media(max-width:600px){main{padding:14px 10px}.panel{padding:14px}.cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.food{min-height:67px}.food .f-price{font-size:15px}.food .f-name{font-size:13px}.bins{grid-template-columns:1fr}.explain{grid-template-columns:1fr}header{padding:16px 12px}.panel h2{font-size:19px}.toolbar .pill{padding:8px 10px}}
+@media print{header{background:#fff;color:#000;box-shadow:none;padding:5px}.toolbar,.note,.footer-area,.widthtools{display:none}.grid{grid-template-columns:1fr 1fr}.food.done{visibility:visible}.panel{box-shadow:none}.explain{display:none}}
+
+/* Three-page lesson flow */
+.pagebar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 16px;flex-wrap:wrap}
+.steps{display:flex;gap:8px;flex-wrap:wrap}.stepbtn{background:#e8eef9;color:#526b95;border:1px solid #cedbf0;border-radius:999px;padding:10px 18px;font-weight:850;font-size:14px}.stepbtn.active{background:#1d4da2;color:#fff;border-color:#1d4da2}.stepbtn:disabled{cursor:default}
+.pageinfo{font-size:13px;color:#64758e;font-weight:750}.lesson-page[hidden]{display:none!important}
+.quizpanel{margin-top:18px}.quizpanel h2{font-size:22px}.quizintro{margin:0 0 17px;font-size:14px;line-height:1.6;color:#62738f}
+.quizgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.quizitem{padding:19px;border:1.5px solid #d9e4f5;background:#fafcff;border-radius:15px;min-width:0}.qno{display:inline-flex;background:#e4edff;border-radius:7px;padding:5px 9px;font-size:12px;font-weight:900;color:#2454ad;margin-bottom:9px}.quizitem h3{font-size:17px;font-weight:850;margin:0 0 8px;line-height:1.6;word-break:keep-all}.qhelp{font-size:12.5px;color:#697a90;line-height:1.65;margin:0 0 12px}.answerbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.answerbar input[type=number]{width:140px;max-width:100%;padding:12px 13px;background:white;color:#1f365b;border-radius:10px;border:1.5px solid #a9bbdb;font-size:16px;font-weight:800}.actionbtn{padding:12px 17px;border-radius:10px;border:0;background:#2856bd;color:white;font-weight:850;min-height:45px}.actionbtn:hover{background:#1c438f}.actionbtn.secondary{background:#eff3fc;border:1px solid #bed0ed;color:#264a90}.actionbtn.secondary:hover{background:#e4edff}
+.choicebar{display:flex;flex-wrap:wrap;gap:10px}.choicebtn{background:white;color:#274773;border:1.5px solid #bdcbea;border-radius:11px;padding:11px 16px;font-weight:850;min-width:126px}.choicebtn.chosen{background:#dce8ff;border-color:#315fe8;color:#1b47aa}.feedback{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:13px;font-weight:700;line-height:1.6}.feedback:empty{display:none}.feedback.correct{background:#e6f7ed;color:#0c704f;border:1px solid #b8e5cf}.feedback.wrong{background:#fff0f1;color:#af3644;border:1px solid #efc9ce}.feedback.info{background:#eff4ff;color:#274f91;border:1px solid #d5e3f7}
+.page-bottom{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:18px 0 3px;flex-wrap:wrap}.page-bottom .navbtn{background:#163e8c;color:white;padding:14px 22px;font-size:15px;border:0;border-radius:11px;font-weight:900}.page-bottom .navbtn:hover{background:#0d2b68}.page-bottom .navbtn.back{background:white;color:#1c4695;border:1.5px solid #aabddc}
+.concept-title{display:flex;align-items:center;gap:12px;margin:0 0 19px}.concept-title .small-chip{border-radius:100px;background:#55c4d6;color:#093e53;padding:8px 17px;font-size:15px;font-weight:900;white-space:nowrap}.concept-title h2{margin:0;color:#0c4562;font-size:25px;letter-spacing:-.03em}
+.concept-grid{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(350px,.87fr);gap:18px}.conceptprose{font-size:17px;line-height:2.3;word-break:keep-all}.conceptprose p{margin:0 0 18px}.cloze{display:inline-block;max-width:100%;padding:9px 8px;color:#15366c;background:#fff;border:2px solid #b6c9ed;border-radius:8px;font-family:inherit;font-size:15px;font-weight:850;vertical-align:middle;cursor:pointer}.cloze.ok{background:#e3f8ed;border-color:#44ad7d}.cloze.no{background:#fff0f0;border-color:#e58890}.definition{border-left:5px solid #62bfd0;background:#f2fafc;border-radius:0 12px 12px 0;padding:17px 18px;margin:18px 0}.definition p:last-child{margin-bottom:0}
+.concept-table-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.concept-table-head h3{font-size:19px;margin:0}.tablecap{color:#607593;font-size:13px;line-height:1.6;margin:8px 0}.concepttable{width:100%;border-collapse:collapse;margin:16px 0 0;font-size:15px}.concepttable th{background:#e4ebf6}.concepttable tr[data-row]{cursor:pointer}.concepttable tr[data-row]:hover td{background:#eff6ff}.concepttable tr.focus td{background:#d8f4f7;font-weight:850}.concepttable tbody tr:last-child td{background:#e7edff}.concepttable td:first-child{text-align:center;white-space:nowrap;width:72%;font-size:14px}.concepttable td{padding:12px 10px}.inspect{background:#edf8fc;border:1.5px solid #bddde5;border-radius:12px;padding:15px 17px;margin-top:17px;font-size:14px;line-height:1.9;color:#28516a}.inspect strong{color:#0f4663}.micro{font-size:12px;color:#6d7e96}.quickcheck{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.quickcheck label{font-size:13px;color:#49647f;font-weight:800}.quickcheck input{display:block;margin-top:6px;width:100%;background:#fff;border:1.5px solid #bbcae3;border-radius:10px;padding:11px 12px;font-size:16px;color:#17376b;font-weight:750}.concept-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+@media(max-width:1050px){.concept-grid,.quizgrid{grid-template-columns:1fr}.conceptprose{font-size:16px}}
+@media(max-width:600px){.concepttable td:first-child{white-space:normal;line-height:1.55}.pagebar{align-items:flex-start}.stepbtn{font-size:12px;padding:9px}.quizitem{padding:13px}.concept-title{flex-wrap:wrap}.concept-title h2{font-size:21px}.conceptprose{font-size:15px;line-height:2.1}.cloze{font-size:13px;padding:6px}.concept-grid{grid-template-columns:1fr}.page-bottom{justify-content:center}}
+@media print{.pagebar,.quizpanel,.page-bottom{display:none}.lesson-page[hidden]{display:none!important}.concept-grid{grid-template-columns:1fr 1fr}}
+
+/* 3-page class lesson: clear numeric entries and exploration */
+input[type=number]{appearance:textfield;-moz-appearance:textfield}input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.steps{gap:7px}.stepbtn{padding:10px 14px}.pagebar{position:relative}
+.definition .cloze{min-width:110px}
+.unit-note{padding:11px 14px;border-radius:10px;background:#fff7e7;border:1px solid #f0daa4;color:#785922;font-size:14px;line-height:1.7;margin:14px 0}
+.concepttable td:first-child{width:auto;white-space:normal}.concepttable th{font-size:15px}.concepttable td{font-size:15px}.concepttable tr:not(:last-child) td{background:#fff}.concepttable tr:nth-child(even):not(:last-child) td{background:#f8faff}.concepttable .sum td{background:#e7edff!important;font-weight:900}
+.number-quiz{margin-top:17px;padding:18px;background:#f8fbff;border:1px solid #dbe5f6;border-radius:14px}.number-quiz h3{font-size:18px;margin:0 0 8px}
+.number-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.number-question{background:white;border:1px solid #d9e4f5;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.55;font-weight:700}
+.number-question .numinput-wrap{display:flex;align-items:center;gap:8px}.number-question input{width:116px;max-width:55%;border:1.5px solid #a8bce2;border-radius:8px;padding:10px 9px;color:#173866;font-size:17px;font-weight:850}.number-question input.goodanswer{border-color:#34a575;background:#e9f9ef}.number-question input.badanswer{border-color:#d45c68;background:#fff0f0}
+.number-question .unit{font-size:15px;font-weight:900;color:#37598d}.number-question .smallhint{font-size:12px;font-weight:600;color:#657794}
+.practice-help{background:#eff5ff;border-radius:10px;padding:10px 14px;line-height:1.7;font-size:14px;color:#395b87}
+.explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.explore-card{background:#fff;border:1.5px solid #dce6f6;border-radius:15px;padding:18px;min-width:0}.explore-card h3{margin:0 0 10px;font-size:19px}.explore-card p{font-size:14px;line-height:1.7;color:#5b6d87}.raw-foods{display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start;margin:15px 0 0}.raw-foods span{border:1px solid #d8e2ef;border-radius:7px;background:#f5f8ff;padding:8px 9px;font-size:13px;font-weight:750}.reflect-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.reflect-item{padding:15px;background:#fff;border:1.5px solid #d7e3f5;border-radius:12px;display:flex;flex-direction:column;gap:11px}.reflect-item p{font-size:15px;margin:0;font-weight:750;line-height:1.7;color:#263c5f}.reflect-options{display:flex;gap:8px}.reflect-options button{flex:1;border:1.5px solid #b6c8e7;color:#214d94;border-radius:10px;padding:9px;font-size:14px;font-weight:850;background:#fff}.reflect-options button.chosen{background:#315fe8;color:white;border-color:#315fe8}
+.widthchoice{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.widthchoice button{border:1.5px solid #c3d1ed;background:#f4f7fd;border-radius:10px;padding:11px 18px;font-size:15px;font-weight:850;color:#325185}.widthchoice button.active{background:#315fe8;border-color:#315fe8;color:white}.compare-table-wrap{max-height:305px;overflow-y:auto;border:1px solid #dbe4f2;border-radius:10px;margin-top:10px}.compare-table-wrap table{width:100%;border-collapse:collapse}.compare-table-wrap tr:nth-child(even) td{background:#f8faff}.compare-table-wrap th,.compare-table-wrap td{padding:7px 12px;font-size:13px}.compare-table-wrap td:first-child{text-align:center}
+.conclusion{margin-top:18px;background:#f0f7fb;border-left:5px solid #4bb3c4;padding:16px 19px;border-radius:0 12px 12px 0;line-height:1.8;font-size:15px}.conclusion ul{margin:6px 0 2px;padding-left:22px}.conclusion strong{color:#114d76}
+@media(max-width:1050px){.explore-grid{grid-template-columns:1fr}.number-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:670px){.number-grid,.reflect-items{grid-template-columns:1fr}.stepbtn{font-size:11px;padding:8px 10px}.pagebar{gap:8px}.steps{flex-wrap:wrap}.concepttable th,.concepttable td{font-size:13px}.explore-card{padding:13px}}
+</style>
+</head>
+<body>
+<header><div class="topline"><span class="eyebrow">중1 수학 · 8.3</span><span class="title">25가지 음식 가격, 한눈에 정리할 수 있을까?</span></div></header>
+<main>
+<div class="pagebar"><div class="steps" aria-label="수업 진행 단계"><button type="button" class="stepbtn active" data-page="1">1. 자료 분류와 질문</button><button type="button" class="stepbtn" data-page="2">2. 개념 완성 · 확인해요</button><button type="button" class="stepbtn" data-page="3">3. 장점과 단점 탐구</button></div><span class="pageinfo" id="page-indicator">1 / 3 페이지</span></div>
+<section id="lesson-1" class="lesson-page">
+<div class="toolbar"><div class="group"><button class="pill" id="shuffle" type="button">↻ 카드 섞기</button><button class="pill alert" id="restart" type="button">처음부터</button><button class="pill main" id="full" type="button">⛶ 전체 화면</button></div></div>
+<div class="grid"><section class="panel"><div class="panelhead"><div><h2>① 뒤섞인 음식 가격</h2><p class="subtitle">카드를 누른 다음 오른쪽 가격 구간을 누르세요. 끌어다 놓아도 됩니다.</p></div><span class="metric" id="progress-label">0 / 25개 분류</span></div>
+<div class="note">💡 <span><b>도입 질문</b> “5,000원 이상 6,000원 미만인 음식은 몇 가지?” 먼저 눈으로 찾아보세요!</span></div>
+<div class="cards" id="food-cards"></div>
+<div class="challenge">🎤 <b>수업 질문</b> “정확히 5,000원인 만둣국은 어느 쪽일까?” · “계급의 크기를 바꾸면 도수는 어떻게 달라질까?”</div>
+</section>
+<section class="panel"><div class="panelhead"><div><h2>② 가격 구간별로 분류</h2><p class="subtitle">이상은 포함(≥), 미만은 포함하지 않음(&lt;)</p></div><span class="metric" id="bins-label">5개 계급</span></div><div class="widthtools" role="group" aria-label="계급의 크기 설정"><strong>계급의 크기 설정</strong><button class="pill" data-width="500" type="button">500원</button><button class="pill active" data-width="1000" type="button">1,000원</button><button class="pill" data-width="2000" type="button">2,000원</button></div><div class="bins" id="bins"></div><div class="footer-area"><div class="progress"><div id="bar"></div></div><div class="status" id="status" role="status" aria-live="polite">음식 카드를 하나 선택하고, 알맞은 계급을 눌러보세요.</div><div class="tools"><button class="toolbtn" id="auto" type="button" disabled title="음식 20개 이상 직접 분류하면 활성화됩니다">⚡ 나머지 자동 정리 (0/20)</button><button class="toolbtn dark" id="showtable" type="button">도수분포표 공개</button></div><div class="autohint" id="auto-hint" aria-live="polite">20개 이상 직접 분류하면 나머지를 자동으로 정리할 수 있어요.</div></div><div class="tablewrap hidden" id="tablebox"><table><thead><tr><th>계급(가격)</th><th>도수(음식 수)</th></tr></thead><tbody id="freqrows"></tbody></table></div></section></div>
+
+<section class="panel quizpanel" id="quiz-panel" aria-label="질문에 답해보기">
+<div class="panelhead"><div><h2>③ 분류한 자료로 질문 해결하기</h2><p class="subtitle">개별 가격 카드와 도수분포표로 알 수 있는 정보가 같은지 생각해 봅시다.</p></div></div>
+<div class="quizgrid">
+  <div class="quizitem">
+    <span class="qno">질문 1</span>
+    <h3>5,900원짜리 식사 쿠폰으로 하나의 음식을 선택하여 주문하려고 한다. 25가지 음식 중 주문 가능한 것은 몇 가지인가?</h3>
+    <p class="qhelp">한 가지 음식만 주문할 수 있어요. 쿠폰으로 선택할 수 있는 음식의 가짓수를 구해 보세요.</p>
+    <div class="answerbar"><input aria-label="질문 1 음식 가짓수" id="q1-answer" type="number" min="0" max="25" step="1" placeholder="숫자 입력"><span>가지</span><button type="button" class="actionbtn" id="q1-check">정답 확인</button></div>
+    <div class="feedback" id="q1-feedback" role="status" aria-live="polite"></div>
+  </div>
+  <div class="quizitem">
+    <span class="qno">질문 2</span>
+    <h3>분류한 표만 보고, 5,000원 이하인 음식이 몇 개인지 답할 수 있는가?</h3>
+    <p class="qhelp">개별 음식의 가격을 보지 않고 <b>도수만 정리한 표</b>를 보고 판단해 봅시다.</p>
+    <div class="choicebar"><button type="button" class="choicebtn" id="q2-yes" aria-pressed="false">답할 수 있다</button><button type="button" class="choicebtn" id="q2-no" aria-pressed="false">답할 수 없다</button></div>
+    <div class="feedback" id="q2-feedback" role="status" aria-live="polite"></div>
+  </div>
+</div>
+</section>
+<div class="page-bottom"><span class="subtitle">음식 가격을 계급별로 정리했다면, 다음 페이지에서 개념을 완성해 봅시다.</span><button type="button" id="next-page" class="navbtn">다음: 도수분포표 개념 완성 →</button></div>
+</section>
+<section id="lesson-2" class="lesson-page" hidden>
+  <div class="panel">
+    <div class="concept-title"><span class="small-chip">생각 ①</span><h2>도수분포표는 무엇인가요?</h2></div>
+    <div class="concept-grid">
+      <div>
+        <div class="conceptprose">
+          <p>음식 가격을 하나씩 확인할 때에는 가격 카드가 편리하지만, <b>어느 가격대에 음식이 많이 있는지</b> 한눈에 파악하기 어렵습니다. 그래서 가격을 일정한 구간으로 묶어 정리합니다.</p>
+          <p>오른쪽 표에서는 음식 가격을 <b>1천 원 간격</b>으로 나누었어요.</p>
+        </div>
+        <div class="definition conceptprose" id="concept-definition">
+          <p>① 변량을 일정한 간격으로 나눈 구간을 <select class="cloze" data-answer="계급" aria-label="구간의 이름"><option value="">빈칸 ①</option><option>계급</option><option>도수</option><option>계급값</option><option>계급의 크기</option><option>도수분포표</option></select>이라고 합니다.</p>
+          <p>② 구간의 너비를 <select class="cloze" data-answer="계급의 크기" aria-label="구간의 너비의 이름"><option value="">빈칸 ②</option><option>계급</option><option>도수</option><option>계급값</option><option>계급의 크기</option><option>도수분포표</option></select>라고 합니다.</p>
+          <p>③ 각 계급의 가운데 값을 <select class="cloze" data-answer="계급값" aria-label="각 계급의 가운데 값의 이름"><option value="">빈칸 ③</option><option>계급</option><option>도수</option><option>계급값</option><option>계급의 크기</option><option>도수분포표</option></select>이라고 합니다.</p>
+          <p>④ 각 계급에 속하는 자료의 수를 그 계급의 <select class="cloze" data-answer="도수" aria-label="각 계급의 자료 수의 이름"><option value="">빈칸 ④</option><option>계급</option><option>도수</option><option>계급값</option><option>계급의 크기</option><option>도수분포표</option></select>라고 합니다.</p>
+          <p>⑤ 변량을 몇 개의 계급으로 나누고, 각 계급의 도수를 조사하여 나타낸 표를 <select class="cloze" data-answer="도수분포표" aria-label="계급과 도수를 조사하여 나타낸 표의 이름"><option value="">빈칸 ⑤</option><option>계급</option><option>도수</option><option>계급값</option><option>계급의 크기</option><option>도수분포표</option></select>라고 합니다.</p>
+        </div>
+        <div class="unit-note"><b>단위 주의!</b> 계급의 크기는 숫자만 쓰지 않고 <b>단위를 함께</b> 나타내요. 이 표의 계급의 크기는 <b>1천 원</b>입니다. (실제 가격으로는 1,000원)</div>
+        <div class="practice-help"><b>계급값 계산</b> = (계급의 양 끝 값의 합) ÷ 2<br>예: 7 이상 ~ 8 미만인 계급의 계급값 = (7 + 8) ÷ 2 = <b>7.5천 원</b></div>
+        <div class="concept-actions"><button type="button" id="concept-check" class="actionbtn">개념 빈칸 확인</button><button type="button" id="concept-reset" class="actionbtn secondary">빈칸 다시 풀기</button></div>
+        <div class="feedback" id="concept-feedback" role="status" aria-live="polite"></div>
+      </div>
+      <div>
+        <div class="concept-table-head"><h3>[표 1] 음식 가격</h3><span class="metric">총 25가지</span></div>
+        <p class="tablecap">가격의 단위가 <b>천 원</b>이라는 점에 주의해서 읽어 보세요.</p>
+        <table class="concepttable" aria-label="음식 가격 도수분포표"><thead><tr><th>가격(천 원)</th><th>음식 수(가지)</th></tr></thead><tbody id="concept-rows"></tbody></table>
+        <div class="number-quiz" id="numeric-practice"><span class="qno">확인해요</span><h3>표를 보고 숫자를 직접 입력해 보세요.</h3><p class="qhelp">단위가 옆에 적혀 있어요. <b>숫자만</b> 입력하면 됩니다. 소수도 입력할 수 있어요.</p>
+          <div class="number-grid">
+            <label class="number-question">① 계급의 개수<div class="numinput-wrap"><input id="num-1" type="number" inputmode="decimal" step="any" aria-label="계급의 개수"><span class="unit">개</span></div></label>
+            <label class="number-question">② 계급의 크기<div class="numinput-wrap"><input id="num-2" type="number" inputmode="decimal" step="any" aria-label="계급의 크기"><span class="unit">천 원</span></div><span class="smallhint">예: 1천 원은 1 입력</span></label>
+            <label class="number-question">③ 5 이상~6 미만인 계급의 도수<div class="numinput-wrap"><input id="num-3" type="number" inputmode="decimal" step="any" aria-label="5 이상 6 미만 계급의 도수"><span class="unit">가지</span></div></label>
+            <label class="number-question">④ 4 이상~5 미만인 계급의 계급값<div class="numinput-wrap"><input id="num-4" type="number" inputmode="decimal" step="any" aria-label="4 이상 5 미만 계급의 계급값"><span class="unit">천 원</span></div></label>
+            <label class="number-question">⑤ 3 이상~4 미만인 계급의 계급값<div class="numinput-wrap"><input id="num-5" type="number" inputmode="decimal" step="any" aria-label="3 이상 4 미만 계급의 계급값"><span class="unit">천 원</span></div></label>
+            <label class="number-question">⑥ 6천 원 미만인 음식의 수<div class="numinput-wrap"><input id="num-6" type="number" inputmode="decimal" step="any" aria-label="6천 원 미만인 음식 수"><span class="unit">가지</span></div></label>
+            <label class="number-question">⑦ 모든 계급의 도수의 합<div class="numinput-wrap"><input id="num-7" type="number" inputmode="decimal" step="any" aria-label="도수의 합"><span class="unit">가지</span></div></label>
+          </div>
+          <div class="concept-actions"><button type="button" class="actionbtn" id="quick-check">숫자 정답 확인</button><button type="button" class="actionbtn secondary" id="quick-reset">숫자 다시 풀기</button></div>
+          <div class="feedback" id="quick-feedback" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-bottom"><button type="button" id="back-page" class="navbtn back">← 첫 페이지</button><button type="button" id="to-page3" class="navbtn">다음: 도수분포표의 장점과 단점 →</button></div>
+</section>
+<section id="lesson-3" class="lesson-page" hidden>
+  <div class="panel">
+    <div class="concept-title"><span class="small-chip">생각 ②</span><h2>도수분포표는 언제 편리하고, 언제 불편할까요?</h2></div>
+    <div class="explore-grid">
+      <section class="explore-card"><h3>원래 음식 가격 자료</h3><p>25가지 음식의 <b>각각의 가격</b>을 볼 수 있어요. 5,000원짜리 메뉴가 무엇인지도 찾을 수 있겠죠?</p><div class="raw-foods" id="raw-foods"></div></section>
+      <section class="explore-card"><h3>도수분포표</h3><p><b>가격대별 음식이 몇 가지인지</b> 한눈에 비교할 수 있어요. 하지만 각 음식의 정확한 가격은 보이지 않아요.</p><div class="compare-table-wrap"><table aria-label="음식 가격 도수분포표 비교"><thead><tr><th>가격(천 원)</th><th>도수(가지)</th></tr></thead><tbody id="standard-rows"></tbody></table></div></section>
+    </div>
+    <div class="quizitem" style="margin-top:18px"><span class="qno">활동 1</span><h3>다음 문장은 도수분포표의 장점일까요, 단점일까요?</h3><p class="qhelp">내용을 읽고 장점 또는 단점을 선택하세요. 버튼을 클릭한 후 정답을 확인할 수 있어요.</p>
+      <div class="reflect-items" id="reflect-items"></div>
+      <div class="concept-actions"><button type="button" class="actionbtn" id="reflect-check">장단점 정답 확인</button><button type="button" class="actionbtn secondary" id="reflect-reset">다시 선택</button></div><div class="feedback" id="reflect-feedback" role="status" aria-live="polite"></div>
+    </div>
+    <div class="quizitem" style="margin-top:18px"><span class="qno">활동 2</span><h3>계급의 크기를 바꾸면 어떨까요?</h3><p class="qhelp">같은 25가지 음식을 더 촘촘하거나 더 넓은 구간으로 나누어 보고, <b>계급의 개수</b>와 <b>자료의 특징</b>이 어떻게 달라지는지 살펴보세요.</p>
+      <div class="widthchoice" role="group" aria-label="계급의 크기 비교"><button type="button" data-compare="250">250원 (매우 좁게)</button><button type="button" data-compare="1000" class="active">1,000원 (기본)</button><button type="button" data-compare="5000">5,000원 (매우 넓게)</button></div>
+      <div class="explore-grid">
+        <div class="explore-card"><div id="compare-note" class="practice-help"></div><div class="compare-table-wrap"><table aria-label="계급의 크기에 따른 도수분포표"><thead><tr><th>가격(원)</th><th>도수(가지)</th></tr></thead><tbody id="compare-rows"></tbody></table></div></div>
+        <div class="explore-card"><h3>직접 판단해 볼까요?</h3><p>계급의 개수가 너무 많으면 도수가 0~1인 구간이 늘어나기 쉬워요. 너무 적으면 서로 다른 가격대가 뭉쳐 차이를 보기 어려워요.</p><p id="compare-question" style="font-weight:850;color:#204b90"></p><div class="choicebar"><button class="choicebtn" id="width-good" type="button">적절하다</button><button class="choicebtn" id="width-bad" type="button">너무 크거나 작다</button></div><div class="feedback" id="width-feedback" role="status" aria-live="polite"></div></div>
+      </div>
+    </div>
+    <div class="conclusion hidden" id="summary-conclusion"><strong>함께 정리하기</strong><ul><li><b>장점</b> — 각 계급의 도수를 한눈에 비교할 수 있고, 많은 자료를 좁은 공간에 정리하기 편리하다.</li><li><b>단점</b> — 원래 자료 하나하나의 정확한 값은 알 수 없으며, 계급이 너무 많거나 너무 적으면 자료의 특징이 잘 드러나지 않을 수 있다.</li></ul></div>
+  </div>
+  <div class="page-bottom"><button type="button" id="back-page2" class="navbtn back">← 개념 페이지</button><span class="subtitle">같은 자료도 어떻게 정리하느냐에 따라 알 수 있는 정보가 달라져요.</span></div>
+</section>
+</main>
+<script>
+'use strict';
+const foods=[
+{name:'라면',price:3500,extra:false},{name:'김밥',price:4000,extra:false},{name:'떡볶이',price:3500,extra:false},
+{name:'쫄면',price:4500,extra:false},{name:'비빔밥',price:4500,extra:false},{name:'순대',price:3200,extra:false},
+{name:'물냉면',price:6500,extra:false},{name:'볶음밥',price:5500,extra:false},{name:'핫도그',price:3000,extra:false},
+{name:'비빔냉면',price:7000,extra:false},{name:'만둣국',price:5000,extra:false},{name:'돈가스',price:7800,extra:false},
+{name:'잔치국수',price:5000,extra:false},{name:'수제비',price:7000,extra:false},{name:'만두',price:3200,extra:false},
+{name:'김치찌개',price:5500,extra:false},{name:'된장찌개',price:6000,extra:false},
+{name:'토스트',price:4200,extra:true},{name:'우동',price:5200,extra:true},{name:'치즈라면',price:5300,extra:true},
+{name:'카레라이스',price:5600,extra:true},{name:'오므라이스',price:5800,extra:true},{name:'칼국수',price:6200,extra:true},
+{name:'육개장',price:6500,extra:true},{name:'짬뽕',price:6800,extra:true}
+];
+const MIN_MANUAL=20;
+let width=1000,order=[],assigned=new Set(),selected=null,tableOpen=false,tries=0;
+const $=id=>document.getElementById(id),money=n=>n.toLocaleString('ko-KR');
+function randOrder(){const a=foods.map((_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function ranges(){const n=Math.ceil((8000-3000)/width);return Array.from({length:n},(_,i)=>({low:3000+i*width,high:3000+(i+1)*width}))}
+function bucket(price){return Math.floor((price-3000)/width)}
+function status(message,type=''){const node=$('status');node.textContent=message;node.className='status'+(type?' '+type:'')}
+function updateBtns(){document.querySelectorAll('[data-width]').forEach(b=>{const active=Number(b.dataset.width)===width;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))})}
+function updateAuto(){const count=assigned.size,unlocked=count>=MIN_MANUAL,button=$('auto');button.disabled=!unlocked;button.textContent=`⚡ 나머지 자동 정리 (${Math.min(count,MIN_MANUAL)}/${MIN_MANUAL})`;button.title=unlocked?'아직 분류하지 않은 음식들을 자동 분류합니다.':`음식 ${MIN_MANUAL-count}개를 더 직접 분류해야 합니다.`;$('auto-hint').textContent=unlocked?(count===foods.length?'모든 음식 분류가 완료되었습니다.':'20개 이상 직접 분류 완료! 이제 나머지를 자동 정리할 수 있어요.'):`음식 ${MIN_MANUAL-count}개만 더 직접 분류하면 자동 정리가 열려요.`}
+function render(){updateBtns();updateAuto();$('progress-label').textContent=`${assigned.size} / 25개 분류`;$('bins-label').textContent=`${ranges().length}개 계급`;$('bar').style.width=(assigned.size/25*100)+'%';
+const cards=$('food-cards');cards.innerHTML='';for(const i of order){const f=foods[i],b=document.createElement('button');b.className='food'+(assigned.has(i)?' done':'')+(i===selected?' selected':'');b.type='button';b.draggable=!assigned.has(i);b.innerHTML=`<span class="f-name">${f.name}</span><span class="f-price">${money(f.price)}원</span>`;b.setAttribute('aria-label',`${f.name}, ${money(f.price)}원`);b.addEventListener('click',()=>{selected=i===selected?null:i;render()});b.addEventListener('dragstart',e=>{selected=i;e.dataTransfer.setData('text/plain',String(i));e.dataTransfer.effectAllowed='move'});cards.appendChild(b)}
+const parent=$('bins');parent.innerHTML='';ranges().forEach((r,j)=>{const members=order.filter(i=>assigned.has(i)&&bucket(foods[i].price)===j);const b=document.createElement('button');b.type='button';b.className='bin';b.innerHTML=`<div class="bin-title"><span class="range">${money(r.low)}원 이상 ~ ${money(r.high)}원 미만</span><span class="counter">${members.length}</span></div><div class="bin-content">${members.length?members.map(i=>`<span class="chip">${foods[i].name}</span>`).join(''):'<span class="bin-empty">이 계급에 들어온 음식 없음</span>'}</div>`;b.addEventListener('click',()=>place(j));b.addEventListener('dragover',e=>{e.preventDefault();b.classList.add('highlight')});b.addEventListener('dragleave',()=>b.classList.remove('highlight'));b.addEventListener('drop',e=>{e.preventDefault();b.classList.remove('highlight');const i=Number(e.dataTransfer.getData('text/plain'));if(Number.isInteger(i)&&i>=0&&i<foods.length){selected=i;place(j)}});parent.appendChild(b)});
+if(tableOpen)renderTable()}
+function place(j){if(selected===null){status('먼저 왼쪽 음식 카드를 선택해 주세요.');return}const item=foods[selected];if(bucket(item.price)!==j){tries++;status(`아쉽다! ${item.name}(${money(item.price)}원)은 이 구간에 들어가지 않아요. ‘이상’과 ‘미만’을 확인하세요.`, 'bad');return}assigned.add(selected);selected=null;render();if(assigned.size===25)status(`성공! 25개 전부 분류했어요. (오분류 시도 ${tries}회) 이제 계급의 크기를 바꿔 보세요.`, 'good');else status(`${item.name} 정답! ${assigned.size}개 분류했어요.`, 'good')}
+function renderTable(){const tbody=$('freqrows');tbody.innerHTML='';ranges().forEach((r,j)=>{const tr=document.createElement('tr');const num=foods.filter(f=>bucket(f.price)===j).length;tr.innerHTML=`<td>${money(r.low)}원 이상 ~ ${money(r.high)}원 미만</td><td><b>${num}</b></td>`;tbody.appendChild(tr)});const tr=document.createElement('tr');tr.innerHTML='<td>합계</td><td>25</td>';tbody.appendChild(tr)}
+function setWidth(w){width=w;selected=null;render();const n=ranges().length;status(`계급의 크기를 ${money(width)}원으로 변경했어요. 계급이 ${n}개가 되었어요. 도수는 어떻게 바뀌었을까요?`)}
+document.querySelectorAll('[data-width]').forEach(b=>b.addEventListener('click',()=>setWidth(Number(b.dataset.width))));
+$('auto').addEventListener('click',()=>{if(assigned.size<MIN_MANUAL){status(`음식 ${MIN_MANUAL-assigned.size}개를 더 직접 분류해야 자동 정리를 사용할 수 있어요.`);return}foods.forEach((_,i)=>assigned.add(i));selected=null;render();status('자동 분류 완료! 학생들과 각 계급의 도수를 확인해 보세요. 계급 크기도 바꿔 보세요.','good')});
+$('restart').addEventListener('click',()=>{assigned.clear();selected=null;tries=0;tableOpen=false;$('tablebox').classList.add('hidden');$('showtable').textContent='도수분포표 공개';render();status('초기화했어요. 다시 분류해 볼까요?')});
+$('shuffle').addEventListener('click',()=>{order=randOrder();selected=null;render();status('카드를 섞었어요. 가격 분포는 그대로일까요?')});
+$('showtable').addEventListener('click',()=>{tableOpen=!tableOpen;$('tablebox').classList.toggle('hidden',!tableOpen);$('showtable').textContent=tableOpen?'도수분포표 숨기기':'도수분포표 공개';if(tableOpen)renderTable();if(tableOpen)status('도수분포표의 계급과 도수를 확인하세요. 합계는 반드시 25예요.','good')});
+$('full').addEventListener('click',()=>{if(!document.fullscreenElement&&document.documentElement.requestFullscreen){document.documentElement.requestFullscreen().catch(()=>status('브라우저의 전체 화면 단축키(F11)를 이용해 주세요.'))}else if(document.exitFullscreen){document.exitFullscreen().catch(()=>{})}});
+
+// --- 3페이지 이동 ---
+function showLessonPage(n){
+  [1,2,3].forEach(i=>{$('lesson-'+i).hidden=i!==n});
+  document.querySelectorAll('[data-page]').forEach(b=>{const active=Number(b.dataset.page)===n;b.classList.toggle('active',active);b.setAttribute('aria-current',active?'step':'false')});
+  $('page-indicator').textContent=`${n} / 3 페이지`;
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showLessonPage(Number(b.dataset.page))));
+$('next-page').addEventListener('click',()=>showLessonPage(2));
+$('back-page').addEventListener('click',()=>showLessonPage(1));
+$('to-page3').addEventListener('click',()=>showLessonPage(3));
+$('back-page2').addEventListener('click',()=>showLessonPage(2));
+
+// --- 1페이지 질문 ---
+const eligibleFoods=foods.filter(f=>f.price<=5900).length;
+function writeFeedback(id,msg,t){const el=$(id);el.className='feedback '+t;el.textContent=msg}
+function checkCoupon(){const raw=$('q1-answer').value;if(raw===''){writeFeedback('q1-feedback','먼저 음식 가짓수를 입력하세요.','info');return}const n=Number(raw);if(n===eligibleFoods){writeFeedback('q1-feedback',`정답! 5,900원 이하인 음식은 ${eligibleFoods}가지예요. 여기서는 한 가지를 고를 때 선택 가능한 메뉴의 가짓수를 세었어요.`, 'correct')}else{writeFeedback('q1-feedback','다시 확인해 보세요. 가격이 5,900원 이하인 메뉴만 세어 보세요.','wrong')}}
+$('q1-check').addEventListener('click',checkCoupon);
+$('q1-answer').addEventListener('keydown',e=>{if(e.key==='Enter')checkCoupon()});
+function checkTableInfo(isYes){$('q2-yes').classList.toggle('chosen',isYes);$('q2-no').classList.toggle('chosen',!isYes);$('q2-yes').setAttribute('aria-pressed',String(isYes));$('q2-no').setAttribute('aria-pressed',String(!isYes));if(isYes){writeFeedback('q2-feedback','5,000원 이상~6,000원 미만에 정확히 5,000원인 음식이 몇 가지인지, 표로 알 수 있을까요?','wrong')}else{writeFeedback('q2-feedback','정답! 정확히 5,000원인 음식이 몇 가지인지 표에는 나타나지 않으므로 5,000원 이하 음식 수를 확정할 수 없어요.','correct')}}
+$('q2-yes').addEventListener('click',()=>checkTableInfo(true));
+$('q2-no').addEventListener('click',()=>checkTableInfo(false));
+
+// --- 2페이지 교과서 단위 (천 원) ---
+const conceptRanges=Array.from({length:5},(_,i)=>({low:3000+i*1000,high:4000+i*1000,count:foods.filter(f=>f.price>=3000+i*1000&&f.price<4000+i*1000).length}));
+function shortRange(r){return `${r.low/1000} 이상 ~ ${r.high/1000} 미만`}
+for(const r of conceptRanges){const tr=document.createElement('tr');tr.innerHTML=`<td>${shortRange(r)}</td><td>${r.count}</td>`;$('concept-rows').appendChild(tr)}
+const totalTr=document.createElement('tr');totalTr.className='sum';totalTr.innerHTML='<td>합계</td><td>25</td>';$('concept-rows').appendChild(totalTr);
+function checkConcepts(){const fields=[...document.querySelectorAll('select.cloze')];let count=0;for(const f of fields){const ok=f.value===f.dataset.answer;count+=ok?1:0;f.classList.toggle('ok',ok);f.classList.toggle('no',!ok)}writeFeedback('concept-feedback',count===fields.length?'정답! 다섯 개의 용어를 모두 정확하게 완성했어요.':`${count}/${fields.length}개 정답. 표시된 빈칸을 다시 확인하세요.`,count===fields.length?'correct':'wrong')}
+$('concept-check').addEventListener('click',checkConcepts);
+$('concept-reset').addEventListener('click',()=>{document.querySelectorAll('select.cloze').forEach(f=>{f.value='';f.classList.remove('ok','no')});$('concept-feedback').textContent='';$('concept-feedback').className='feedback'});
+document.querySelectorAll('select.cloze').forEach(f=>f.addEventListener('change',()=>f.classList.remove('ok','no')));
+const numericAnswers=[5,1,8,4.5,3.5,17,25];
+function checkNumeric(){let correct=0,filled=0;const wrong=[];numericAnswers.forEach((ans,i)=>{const input=$(`num-${i+1}`),raw=input.value.trim();const ok=raw!==''&&Math.abs(Number(raw)-ans)<1e-9;if(raw!=='')filled++;if(ok)correct++;else wrong.push(i+1);input.classList.toggle('goodanswer',ok);input.classList.toggle('badanswer',raw!==''&&!ok)});
+  if(!filled){writeFeedback('quick-feedback','먼저 숫자를 입력해 보세요.','info');return}
+  if(correct===numericAnswers.length){writeFeedback('quick-feedback','7문제 모두 정답! 특히 계급의 크기는 단위를 붙여 ‘1천 원’으로 읽어야 해요.','correct')}
+  else{writeFeedback('quick-feedback',`${correct}/${numericAnswers.length}문제 정답. ${wrong.map(n=>['①','②','③','④','⑤','⑥','⑦'][n-1]).join(', ')}번을 다시 확인하세요. 계급값은 (양 끝 값의 합) ÷ 2입니다.`,'wrong')}
+}
+$('quick-check').addEventListener('click',checkNumeric);
+$('quick-reset').addEventListener('click',()=>{numericAnswers.forEach((_,i)=>{const f=$(`num-${i+1}`);f.value='';f.classList.remove('goodanswer','badanswer')});$('quick-feedback').textContent='';$('quick-feedback').className='feedback'});
+numericAnswers.forEach((_,i)=>{const inp=$(`num-${i+1}`);inp.addEventListener('input',()=>inp.classList.remove('goodanswer','badanswer'));inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkNumeric()})});
+
+// --- 3페이지: 원자료, 장단점, 계급의 크기 비교 ---
+foods.forEach(f=>{const el=document.createElement('span');el.textContent=`${f.name} ${money(f.price)}원`;$('raw-foods').appendChild(el)});
+conceptRanges.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${shortRange(r)}</td><td>${r.count}</td>`;$('standard-rows').appendChild(tr)});
+const reflectData=[
+  {t:'각 가격 구간에 음식이 몇 가지 있는지 한눈에 알 수 있다.',type:'good'},
+  {t:'음식이 아주 많아도 표 하나로 간단하게 정리할 수 있다.',type:'good'},
+  {t:'각 음식의 정확한 가격을 표만으로는 알 수 없다.',type:'bad'},
+  {t:'계급의 개수가 너무 적거나 많으면 특징을 파악하기 어렵다.',type:'bad'}
+];
+const reflectChoices=Array(reflectData.length).fill(null);
+reflectData.forEach((item,i)=>{const el=document.createElement('div');el.className='reflect-item';const p=document.createElement('p');p.textContent=`${i+1}. ${item.t}`;el.appendChild(p);const options=document.createElement('div');options.className='reflect-options';for(const opt of [{v:'good',label:'장점'},{v:'bad',label:'단점'}]){const b=document.createElement('button');b.type='button';b.textContent=opt.label;b.dataset.i=String(i);b.dataset.choice=opt.v;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{reflectChoices[i]=opt.v;[...options.children].forEach(btn=>{const yes=btn.dataset.choice===opt.v;btn.classList.toggle('chosen',yes);btn.setAttribute('aria-pressed',String(yes))})});options.appendChild(b)}el.appendChild(options);$('reflect-items').appendChild(el)});
+$('reflect-check').addEventListener('click',()=>{const score=reflectData.reduce((a,v,i)=>a+(reflectChoices[i]===v.type?1:0),0);$('summary-conclusion').classList.remove('hidden');writeFeedback('reflect-feedback',score===4?'모두 정답! 장점 2개와 단점 2개를 정확히 구별했어요.':`${score}/4개 정답. 자료의 분포는 잘 보이지만 개별 가격은 사라진다는 점을 떠올려 보세요.`,score===4?'correct':'wrong')});
+$('reflect-reset').addEventListener('click',()=>{$('summary-conclusion').classList.add('hidden');reflectChoices.fill(null);document.querySelectorAll('.reflect-options button').forEach(b=>{b.classList.remove('chosen');b.setAttribute('aria-pressed','false')});$('reflect-feedback').textContent='';$('reflect-feedback').className='feedback'});
+let compareWidth=1000;
+function renderCompare(){document.querySelectorAll('[data-compare]').forEach(b=>b.classList.toggle('active',Number(b.dataset.compare)===compareWidth));const nums=Math.ceil(5000/compareWidth);let empty=0;const rows=$('compare-rows');rows.innerHTML='';for(let i=0;i<nums;i++){const lo=3000+compareWidth*i,hi=lo+compareWidth,cnt=foods.filter(f=>f.price>=lo&&f.price<hi).length;if(!cnt)empty++;const tr=document.createElement('tr');tr.innerHTML=`<td>${money(lo)}원 이상 ~ ${money(hi)}원 미만</td><td>${cnt}</td>`;rows.appendChild(tr)}
+  $('compare-note').innerHTML=`<b>계급의 크기: ${money(compareWidth)}원</b><br>계급 ${nums}개 · 도수가 0인 계급 ${empty}개 · 도수의 합계 25가지`;
+  $('compare-question').textContent=`계급이 ${nums}개인 이 표는 자료의 특징을 파악하기에 적절할까요?`;
+  ['width-good','width-bad'].forEach(id=>$(id).classList.remove('chosen'));
+  $('width-feedback').className='feedback';$('width-feedback').textContent='';
+}
+document.querySelectorAll('[data-compare]').forEach(b=>b.addEventListener('click',()=>{compareWidth=Number(b.dataset.compare);renderCompare()}));
+function judgeWidth(good){$('width-good').classList.toggle('chosen',good);$('width-bad').classList.toggle('chosen',!good);const isRight=good===(compareWidth===1000);if(isRight){let msg=compareWidth===1000?'정답! 5개 계급이면 음식 가격의 분포를 비교하기 좋아요.':compareWidth===250?'정답! 계급이 너무 많아 0개나 1개인 구간이 많아져요.':'정답! 계급이 단 1개라서 어느 가격대에 음식이 많은지 알 수 없어요.';writeFeedback('width-feedback',msg,'correct')}else writeFeedback('width-feedback','다른 계급의 크기와 비교해 보고 다시 생각해 보세요.','wrong')}
+$('width-good').addEventListener('click',()=>judgeWidth(true));$('width-bad').addEventListener('click',()=>judgeWidth(false));
+renderCompare();
+
+order=randOrder();render();
+</script>
+</body></html>
